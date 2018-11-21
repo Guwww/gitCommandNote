@@ -127,7 +127,9 @@
 
     git merge --no-ff -m '描述文字'  branchName
 
-    合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+    合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，
+    
+    而fast forward合并就看不出来曾经做过合并。
 
 Bug分支：
 
@@ -142,6 +144,7 @@ Bug分支：
         3.修改的文件 没有 add   stash  切换分支也会隐藏
 
         4.没有add没有commit是普通文件，切换分支也不会隐藏起来
+
 
     git stash apply  恢复  git stash drop 删除stash
 
@@ -180,7 +183,9 @@ Bug分支：
     再 pull  
 
 
-多人协作的工作模式通常是这样：
+
+
+多人协作的工作模式通常是：
 
     首先，可以试图用git push origin <branch-name>推送自己的修改；
 
@@ -190,7 +195,9 @@ Bug分支：
 
     没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
 
-    如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
+    如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，
+
+    用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
 
 
 
