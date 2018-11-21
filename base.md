@@ -1,8 +1,9 @@
-touch file  新建文件
+    touch file  新建文件
 
-mkdir   新建文件夹  
+    mkdir   新建文件夹  
 
 进入项目才可以设置版本控制：
+
     git config --global user.name xxx   设置名字
     git config --global user.email xxx  设置邮箱
     git config --global --list 查看全局信息
@@ -11,6 +12,7 @@ mkdir   新建文件夹
 
 
 对比操作：
+
     git diff    工作区和暂存区文件对比
 
     git diff --cached(--staged)  暂存区与版本库对比
@@ -21,6 +23,7 @@ mkdir   新建文件夹
 
 
 撤销操作：
+
     (1)git checkout -- file
         (1)file在工作区change,没有add到暂存区，==>撤销修改就回到和版本库一模一样的状态
         (2)file add到暂存区，又再次change ==>撤销修改就回到添加到暂存区后的状态。
@@ -36,9 +39,11 @@ mkdir   新建文件夹
 
 
 删除操作：
+
     工作区文件 (没添加到暂存区)  可以随时删除
 
     file add到暂存区=>删除操作
+
         git rm file  工作区 暂存区 都会删除
 
         (1) git rm -f   file	工作区 暂存区 都会删除
@@ -50,8 +55,10 @@ mkdir   新建文件夹
 
 
 版本回退操作：
+
     git log --pretty=oneline    打印版本号   
     git reflog      获取commit_id 
+
 
     git reset --hard  HEAD^     回到过去上一个版本
 
