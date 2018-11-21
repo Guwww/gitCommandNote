@@ -25,9 +25,11 @@
 撤销操作：
 
     (1)git checkout -- file
+
         (1)file在工作区change,没有add到暂存区，==>撤销修改就回到和版本库一模一样的状态
-        (2)file add到暂存区，又再次change ==>撤销修改就回到添加到暂存区后的状态。
-        tips: git checkout -- file 命令中的--很重要，没有--，就变成了“切换分支”命令.
+        
+        (2)file add到暂存区，又再次change ==>撤销修改就回到添加到暂存区后的状态。 
+            tips: git checkout -- file 命令中的--很重要，没有--，就变成了“切换分支”命令.
 
     (2)git reset HEAD file   add到暂存区的文件(未commit)，撤回到工作区
 
@@ -50,7 +52,7 @@
 
         (2) git rm --cached  file	  只删除暂存区  不删除工作区
 
-        tips:删除操作后，需要git  commit操作。
+            tips:删除操作后，需要git  commit操作。
 
 
 
@@ -65,3 +67,27 @@
     git reset --hard HEAD~num   回到过去的num个版本
 
     git reset --hard commit_id  回到commit_id(过去未来都可以)版本   在版本之间来回穿梭
+
+
+
+分支操作：
+
+    git  branch     查看分支
+
+    git  branch  file   创建分支
+
+    git checkout file   切换分支
+
+    git checkout -b  file      创建 切换 分支
+
+    git merge file      合并分支
+        tips:合并某个分支，需要先切换到主分支。
+
+    git branch  --merged		查看当前分支下所合并的分支
+
+    git branch  --no--merged 	查看未合并的分支
+
+    git branch  -d   file 	    删除分支 （未合并的分支不能删除）
+
+    git branch -D file 	    强制删除未合并的分支
+
