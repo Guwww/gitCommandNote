@@ -28,8 +28,13 @@ git diff master(分支名称)  git diff HEAD -- file    工作区与版本库对
 <!-- git commit --amend  撤销提交操作(2次修改，1个添加提交，)  更改上次提交 -->
 
 删除操作：
-git  rm file  工作区文件手动删除  可以对应删除暂存区的
+工作区文件 (没添加到暂存区)  可以随时删除
 
-git rm -f   file ,  git rm  file 	工作区 暂存区 都会删除
+git rm file 
 
-git rm --cached  file	  只删除暂存区  不删除工作区
+file add到暂存区=>删除操作
+(1) git rm -f   file	工作区 暂存区 都会删除
+
+(2) git rm --cached  file	  只删除暂存区  不删除工作区
+
+tips:删除操作后，需要git  commit操作。
