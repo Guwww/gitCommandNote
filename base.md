@@ -31,6 +31,25 @@
     git diff master(分支名称)  git diff HEAD -- file    工作区与版本库对比 
 
 
+查看文件状态：
+
+    git status (未追踪Untracked，已修改Modifed，已暂存)
+
+    git status -s 简化打印状态。
+
+    ?? untracked file
+
+    A(green)    git add 的 file
+
+      M(red)    change  but not git add 
+
+    M(green)M(red)      change and git add git commit  and  again change 
+
+    M(green)    change and git add
+
+    D       delete
+
+
 
 
 撤销操作：
@@ -65,6 +84,14 @@
 
             tips:删除操作后，需要git  commit操作。
 
+
+移动操作：
+
+    git mv file nextfile/file  移动文件到另一个文件夹
+
+    git mv oldname newname  or  工作区直接重命名文件 （原理：删除原文件，重新命名一个文件，赋值源文件的内容 ==>） 
+    
+    后续 需要删除 git rm 原file   git add 新命名file
 
 
 版本回退操作：
