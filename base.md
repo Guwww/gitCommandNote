@@ -54,19 +54,28 @@
 
 撤销操作：
 
-    (1)git checkout -- file
+    (1)git checkout -- file  针对的是未commit,add的file 或者 add了但是又再次修改的file
 
         (1)file在工作区change,没有add到暂存区，==>撤销修改就回到和版本库一模一样的状态
         
         (2)file add到暂存区，又再次change ==>撤销修改就回到添加到暂存区后的状态。 
             tips: git checkout -- file 命令中的--很重要，没有--，就变成了“切换分支”命令.
 
-    (2)git reset HEAD file   add到暂存区的文件(未commit)，撤回到工作区
+    (2)git reset HEAD file  取消暂存（add到暂存区未commit，撤回到work directory）
 
-    (3)file 不仅add了，而且commit了。可以用版本回退操作。
-            前提是：还没有把自己的本地版本库推送到远程。
+    (3)git reset HEAD^ 撤销到上次提交。  file 不仅add了，而且commit了。撤回到工作区状态。
 
-    <!-- git commit --amend  撤销提交操作(2次修改，1个添加提交，)  更改上次提交 -->
+        git reset HEAD~num 撤销num次提交。
+
+        git reset commit_id 撤销到制定哈希值。
+            
+
+    git commit --amend
+        撤销上一次提交信息
+            1. 修改提交信息
+            2. 修正紧挨着的(不能有任何后续操作的)一次的提交与本次提交合并
+
+
 
 
 
@@ -94,10 +103,11 @@
     后续 需要删除 git rm 原file   git add 新命名file
 
 
-版本回退操作：
+（慎用！！！！！！！）
+版本回退操作：（ 慎用！！） 用==>  git rest HEAD^ git reset HEAD~num  gitreset commit_id 就可以
 
     git log --pretty=oneline    打印版本号   
-    git reflog      获取commit_id 
+    git reflog      获取commit_id   查看历史提交记录
 
 
     git reset --hard  HEAD^     回到过去上一个版本
@@ -105,6 +115,20 @@
     git reset --hard HEAD~num   回到过去的num个版本
 
     git reset --hard commit_id  回到commit_id(过去未来都可以)版本   在版本之间来回穿梭
+
+
+Reset的本质：
+	
+    重置工作目录，丢失暂存：
+        git reset --hard (尽量避免使用)
+
+    保留工作目录，与原分支差异将放到暂存区
+        git reset --soft
+
+    保留工作目录，并且清空暂存区
+        git reset --mixed(默认) 
+
+
 
 
 
@@ -128,6 +152,8 @@
     git branch -d file 	    删除分支 （未合并的分支不能删除）
 
     git branch -D file 	    强制删除未合并的分支
+
+    git merge --abort  合并冲突时，可以取消合并
 
 
 
@@ -158,28 +184,37 @@
     
     而fast forward合并就看不出来曾经做过合并。
 
+
+
 Bug分支：
 
-    git stash  隐藏暂存区的修改。
+    git stash  隐藏暂存区的修改。只针对 存储在暂存区 以及 工作目录修改文件
 
     使用条件：
-        
-        1.add 并 commit  是正常的普通的dev分支，切换分支会隐藏
-        
-        2.新文件 add 没有 commit    stash 切换分支也会隐藏
-        
-        3.修改的文件 没有 add   stash  切换分支也会隐藏
 
+        1.新文件 add 没有 commit    stash 切换分支也会隐藏
+        
+        2.修改的文件 没有 add   stash  切换分支也会隐藏
+        
+        
+        3.add 并 commit  是正常的普通的dev分支，切换分支会隐藏
+        
         4.没有add没有commit是普通文件，切换分支也不会隐藏起来
 
 
-    git stash apply  恢复  git stash drop 删除stash
+        git stash 存储暂存区及工作目录修改文件
+        
+        git stash -u 在上面的基础上带上未追踪文件
 
-    git stash pop  恢复并删除
+        git stash list 打印所有存储内容
 
-    git stash list 查看stash内容
+        git stash apply <stashName> 将存储内容重新应用（默认不保留已暂存内容）
+        
+        git stash apply --index 将原暂存依旧以暂存进行取出
 
-    git stash apply stash@{0}  恢复制定stash
+        git stash drop  需要手动移除存储
+
+        git stash apply stash@{0}  恢复制定stash（list打印的） 删除也是对应的
 
 
 
