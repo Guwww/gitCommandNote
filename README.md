@@ -1,4 +1,4 @@
-# gitCommandNote
+# git Command Note
 study git command note
 
     touch file  新建文件
