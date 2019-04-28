@@ -96,7 +96,7 @@ study git command note
 
     file add到暂存区=>删除操作
 
-        git rm file  工作区 暂存区 都会删除
+        git rm file  工作区 暂存区 都会删除(不涉及版本库)
 
         (1) git rm -f   file	工作区 暂存区 都会删除
 
