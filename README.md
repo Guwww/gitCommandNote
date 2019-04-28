@@ -57,7 +57,9 @@ study git command note
 
 撤销操作：
 
-    (1)git checkout -- file  针对的是未commit,add的file 或者 add了但是又再次修改的file
+    (1)git checkout -- file  
+
+        针对的是未commit,add的file 或者 add了但是又再次修改的file
 
         (1)file在工作区change,没有add到暂存区，==>撤销修改就回到和版本库一模一样的状态
         
@@ -71,6 +73,12 @@ study git command note
         git reset HEAD~num 撤销num次提交。
 
         git reset commit_id 撤销到制定哈希值。
+
+        场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+
+        场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
+
+        场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。        
             
 
     git commit --amend
@@ -106,8 +114,8 @@ study git command note
     后续 需要删除 git rm 原file   git add 新命名file
 
 
-（慎用！！！！！！！）
-版本回退操作：（ 慎用！！） 用==>  git rest HEAD^ git reset HEAD~num  gitreset commit_id 就可以
+（慎用！）
+版本回退操作：用==>  git rest HEAD^ git reset HEAD~num  git reset commit_id 就可以
 
     git log --pretty=oneline    打印版本号   
     git reflog      获取commit_id   查看历史提交记录
@@ -118,7 +126,13 @@ study git command note
     git reset --hard HEAD~num   回到过去的num个版本
 
     git reset --hard commit_id  回到commit_id(过去未来都可以)版本   在版本之间来回穿梭
+    版本回退后也会把工作区的文件一起更新了。
+    
+    HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
 
+    穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+
+    要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
 Reset的本质：
 	
